@@ -15,7 +15,10 @@ type Cords = { x: number; y: number };
 
 export type Strategy = 'fixed' | 'absolute' | 'relative' | 'sticky' | 'static';
 
-export type Middlware = () => Cords;
+export type Middlware = {
+  name: string;
+  fn: ({ x, y }: Cords) => Cords;
+};
 
 export type Middlewares = Middlware[];
 
@@ -94,7 +97,18 @@ export const computePosition = async (
   strategy: Strategy,
   middlewares?: Middlewares
 ): ComputePositionReturn => {
-  const { x, y } = computeCords(anchor, floating, position);
+  let { x, y } = computeCords(anchor, floating, position);
+
+  if (middlewares) {
+    if (middlewares.length) {
+      for (const middleware of middlewares) {
+        const { fn } = middleware;
+        const { x: x1, y: y1 } = fn({ x, y });
+        x = x1;
+        y = y1;
+      }
+    }
+  }
 
   return {
     anchor,
@@ -106,4 +120,4 @@ export const computePosition = async (
   };
 };
 
-export const updatePosition = () => {};
+export const updatePosition = (anchor: HTMLElement, float: HTMLElement) => {};
