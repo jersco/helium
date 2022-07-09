@@ -1,0 +1,212 @@
+import * as React from 'react';
+
+// interface UsePopper {
+//   top: number;
+//   bottom: number;
+//   x: number;
+//   y: number;
+//   width: number;
+// }
+
+// type Anchor = HTMLDivElement | null;
+
+// type Popper = HTMLDivElement | null;
+
+// /**
+//  *
+//  * @param anchor ref.current.offsetWidth
+//  * @param popper
+//  * @returns
+//  */
+
+// function usePopper(anchor: Anchor, popper: Popper): UsePopper | undefined {
+//   const [position, setPosition] = React.useState(0);
+
+//   const [directions, setDirections] = React.useState({
+//     top: 0,
+//     bottom: 0,
+//     left: 0,
+//     right: 0,
+//     x: 0,
+//     y: 0,
+//     width: 0,
+//   });
+
+//   React.useEffect(() => {
+
+    
+//     window.addEventListener('resize', (test) => {
+//       console.log('1');
+//       setTimeout(() => {
+//         console.log('2');
+//         console.log(anchor, popper);
+//         if (anchor && popper) {
+//           console.log('3');
+//           const { top, bottom, left, right, x, y } =
+//             anchor.getBoundingClientRect();
+
+//           const popperRect = popper.getBoundingClientRect();
+
+//           const {
+//             top: pTop,
+//             bottom: pBottom,
+//             left: pLeft,
+//             right: pRight,
+//           } = popperRect;
+
+//           const width = anchor.offsetWidth;
+
+//           const pHeight = popper.offsetHeight;
+
+//           const windowWidth = Math.min(
+//             document.documentElement.clientWidth,
+//             window.innerWidth
+//           );
+
+//           const windowHeight = Math.min(
+//             document.documentElement.clientHeight,
+//             window.innerHeight
+//           );
+
+//           console.log({ windowHeight, windowWidth });
+//           console.log({ pTop, pBottom, pLeft, pRight });
+//           // console.log({ top, bottom, left, right, x, y });
+
+//           console.log('yeet');
+//           console.log(windowHeight - pBottom);
+
+//           if (windowHeight - pBottom < 0) {
+//             setDirections((state) => ({
+//               top,
+//               left,
+//               right,
+//               x,
+//               y,
+//               width,
+//               bottom: windowHeight - pHeight - 20,
+//             }));
+//           } else {
+//             setDirections((state) => ({
+//               top,
+//               left,
+//               right,
+//               x,
+//               y,
+//               width,
+//               bottom,
+//             }));
+//           }
+        
+
+//         setPosition((state) => (state += 1));
+//       }, 500);
+//     });
+
+//     return () => window.removeEventListener('resize', () => {});
+//   }, [anchor, popper]);
+
+//   return {
+//     ...directions,
+//   };
+}
+
+function App() {
+  const [anchor, setAnchor] = React.useState<HTMLDivElement | null>(null);
+  const [popper, setPopper] = React.useState<HTMLDivElement | null>(null);
+
+  const MOCK_DATA = ['item1', 'item1', 'item1', 'item1', 'item1', 'item1'];
+
+  const pos = usePopper(anchor, popper);
+
+  console.log(pos);
+
+  return (
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
+    >
+      {/* <div>
+        <input
+          style={{
+            border: '1px solid blue',
+            padding: '10px',
+          }}
+          placeholder="Select"
+          ref={setAnchor}
+        />
+        <div
+          ref={setPopper}
+          style={{
+            border: '1px solid red',
+            position: 'absolute',
+            top: pos?.bottom + 10,
+            width: pos?.width,
+            backgroundColor: 'green',
+            zIndex: 999,
+          }}
+        >
+          {MOCK_DATA.map((data) => {
+            return <li>{data}</li>;
+          })}
+        </div>
+      </div>
+      <div
+        style={{
+          backgroundColor: 'red',
+          width: 250,
+          height: 250,
+        }}
+      />
+      <div
+        style={{
+          backgroundColor: 'red',
+          width: 250,
+          height: 250,
+        }}
+      />{' '}
+      <div
+        style={{
+          backgroundColor: 'red',
+          width: 250,
+          height: 250,
+        }}
+      />{' '}
+      <div
+        style={{
+          backgroundColor: 'red',
+          width: 250,
+          height: 250,
+        }}
+      />{' '}
+      <div
+        style={{
+          backgroundColor: 'red',
+          width: 250,
+          height: 250,
+        }}
+      />{' '}
+      <div
+        style={{
+          backgroundColor: 'red',
+          width: 250,
+          height: 250,
+        }}
+      />{' '}
+      <div
+        style={{
+          backgroundColor: 'red',
+          width: 250,
+          height: 250,
+        }}
+      /> */}
+    </div>
+  );
+}
+
+export default App;
